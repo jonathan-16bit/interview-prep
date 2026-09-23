@@ -37,9 +37,25 @@ int main(void) {
     for (int i = 0; i < star; ++i)
       cout << "*";
 
+    cout << endl;
+  }
+
+  // Hollow pyramid
+  cout << endl;
+  for (int star = 1; star <= size - 1; star += 2) {
+    int half = (size - star) / 2;
     for (int i = 0; i < half; ++i)
       cout << " ";
 
+    for (int i = 0; i < star; ++i) {
+      if (i == 0 || i == star - 1)
+        cout << "*";
+      else
+        cout << " ";
+    }
     cout << endl;
   }
+  for (int i = 1; i <= size; ++i)
+    cout << "*";
+  cout << endl;
 }
