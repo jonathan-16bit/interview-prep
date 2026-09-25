@@ -2,22 +2,18 @@
 #include <vector>
 using namespace std;
 
-void printArr(vector<int> arr) {
+void printArr(const vector<int> &arr) {
   cout << "[";
   for (int elt: arr)
     cout << elt << " ";
   cout << "]";
 }
 
-vector<int> revArr(vector<int> arr) {
-  vector<int> copy = arr;
-
+void revArrInPlace(vector<int> &arr) {
   int lo = 0, hi = arr.size() - 1;
   while (lo < hi) {
-    swap(copy[lo++], copy[hi--]);
+    swap(arr[lo++], arr[hi--]);
   }
-
-  return copy;
 }
 
 int main(void) {
@@ -26,10 +22,11 @@ int main(void) {
     {1, 2, 4, 8, 16, 32, 64, 128}
   };
 
-  for (vector<int> test: tests) {
+  for (vector<int>& test: tests) {
     printArr(test);
     cout << "\nReversed: ";
-    printArr(revArr(test));
+    revArrInPlace(test);
+    printArr(test);
     cout << "\n\n";
   }
 }
