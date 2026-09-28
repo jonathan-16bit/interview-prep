@@ -1,13 +1,11 @@
 def longest_subarray_sum_k(arr, k):
     prefix_sum, max_len = 0, 0
-    prefix_map = {}
+
+    # Init 0: -1 for when [0, i] has sum k
+    prefix_map = {0: -1}
 
     for i, n in enumerate(arr):
         prefix_sum += n
-
-        # If subarray from 0 till i has sum k
-        if prefix_sum == k:
-            max_len = i + 1
 
         # Compute the needed prefix sum
         needed = prefix_sum - k
