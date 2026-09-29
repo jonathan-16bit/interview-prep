@@ -15,3 +15,7 @@ class Solution:
                 break
 
         return top_k
+
+class Solution:
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+        return list(dict(sorted(Counter(nums).items(), key=lambda pair: pair[1], reverse=True)).keys())[:k]
