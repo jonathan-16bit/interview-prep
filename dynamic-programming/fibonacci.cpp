@@ -11,7 +11,11 @@ int fib_naive(int n) {
   return fib_naive(n - 1) + fib_naive(n - 2);
 }
 
-// Memoisation
+/*
+ * Memoisation
+ * Each fib[i] (in i = 0..n) gets computed only once, and stored for future calls
+ * This gives us O(N) time, since there are O(n) distinct states and O(1) work per state
+ */
 const int N = 100;
 int fib[N];
 int fib_memo(int n) {
