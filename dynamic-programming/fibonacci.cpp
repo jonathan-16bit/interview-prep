@@ -33,8 +33,20 @@ int main() {
   // -1 means "not computed" (it is also an impossible fib value)
   memset(fib, -1, sizeof(fib));
 
+
   int n;
   cin >> n;
+
+  /* 
+   * Bottom-up approach: tabulation
+   * Time and space: O(N)
+   */
+  int fib_tab[N];
+  fib_tab[0] = 0, fib_tab[1] = 1;
+  for (int i = 2; i <= n; ++i)
+    fib_tab[i] = fib_tab[i - 1] + fib_tab[i - 2];
+
   cout << fib_naive(n) << endl;
   cout << fib_memo(n) << endl;
+  cout << fib_tab[n] << endl;
 }
