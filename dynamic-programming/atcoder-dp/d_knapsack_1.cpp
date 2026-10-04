@@ -42,3 +42,8 @@ int main(void) {
   long long res = maxProfit(value.size() - 1, dp, weight, value, w);
   cout << res << endl;
 }
+
+/*
+ * State: (i, wt)
+ * Denotes the maximum profit obtainable using items 0..i with remaining capacity wt
+ */
