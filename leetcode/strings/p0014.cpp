@@ -1,33 +1,22 @@
 class Solution {
 public:
   string longestCommonPrefix(vector<string>& strs) {
-    size_t bound = 201;
+    size_t bound = strs[0].size();
     for (const auto& s: strs)
       bound = min(bound, s.size());
 
-    if (bound == 0)
-      return "";
+    if (bound == 0) return "";
 
-    int hi = -1;
-    for (int i = bound - 1; i >= 0; i--) {
-      char curr = '0';  // since only lowercase alphabet is expected
-      bool isCommon = true;
+    // Compare each char position across all strings
+    for (int i = 0; i < bound; ++i) {
       for (const auto& s: strs) {
-        curr = (curr == '0') ? s[i] : curr;
-        if (curr != s[i]) {
-          isCommon = false;
-          break;
-        }
+        if (s[i] != strs[0][i])
+          return s.substr(0, i);
       }
-
-      if (isCommon && hi == -1)
-        hi = i;
-      if (!isCommon)
-        hi = -1;
     }
 
-    if (hi == -1)
-      return "";
-    return strs[0].substr(0, hi + 1);
+    // Deals with single-word case
+    // and when we run out of chars to compare before reaching mismatch
+    return strs[0].substr(0, bound);
   }
 };
