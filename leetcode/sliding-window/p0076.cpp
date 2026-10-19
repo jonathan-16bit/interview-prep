@@ -9,8 +9,8 @@ public:
     int req_sat = need.size();
 
     unordered_map<char, int> window;
-    int lo = 0, satisfied = 0, best = s.size() + 1;
-    string res = "";
+    int lo = 0, satisfied = 0, best_sz = s.size() + 1;
+    int best_hi = 0, best_lo = 0;
     for (int hi = 0; hi < s.size(); ++hi) {
       if (need.find(s[hi]) == need.end())
         continue;
@@ -25,9 +25,10 @@ public:
           continue;
         }
 
-        if (hi - lo + 1 < best) {
-          best = hi - lo + 1;
-          res = s.substr(lo, hi - lo + 1);
+        if (hi - lo + 1 < best_sz) {
+          best_sz = hi - lo + 1;
+          best_hi = hi;
+          best_lo = lo;
         }
 
         window[s[lo]] -= 1;
@@ -39,6 +40,8 @@ public:
 
     }
 
-    return res;
+    if (best_sz == s.size() + 1)
+      return "";
+    return s.substr(best_lo, best_hi - best_lo + 1);
   }
 };
